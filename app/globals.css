@@ -1,26 +1,67 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* * @Theme */
+@theme {
+  /* * Fonts */
+  --font-base: var(--font-base);
+  --font-accent: var(--font-accent);
+
+  /* * Color */
+  /* Main colors */
+  --color-primary: #6d7bd3;
+  --color-secondary: #805489;
+  --color-accent: #1aa5aa;
+  --color-light: #d5dce2;
+
+  /* Additional colors */
+  --color-white: #ffffff;
+  --color-text: #181616;
+  --color-text-light: #a9a3b1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* * Base */
+@layer base {
+  html {
+    @apply text-base;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply font-base font-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-accent font-semibold;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* * Components */
+@layer components {
+  .wrapper {
+    @apply mx-auto w-full max-w-360 px-4;
+  }
+
+  .btn {
+    @apply w-fit px-5 py-2.5 text-base font-bold bg-primary text-white rounded-xl hover:bg-accent transition-colors duration-300 cursor-pointer active:bg-accent/60;
+  }
+
+  .content {
+    @apply mt-24 min-h-screen text-text flex flex-col gap-10;
+  }
+
+  .select-block {
+    @apply flex flex-col gap-1 text-text;
+  }
+
+  .select-label {
+    @apply font-medium;
+  }
+
+  .select {
+    @apply border border-primary rounded-xl p-2 outline-none cursor-pointer focus:ring-2 focus:ring-accent;
+  }
 }
